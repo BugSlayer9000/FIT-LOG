@@ -11,6 +11,24 @@ export const getExercises = async (_req, res) => {
   }
 };
 
+export const getOneWorkout = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Invalid Exercise ID" });
+  }
+
+  try {
+    const exercise = await Exercise.findById(id);
+    res.status(200).json({ success: true, data: exercise });
+  } catch (error) {
+    console.log("Error in getOneWorkout fetching the Exercise", error);
+    res.status(501).json({ success: false, message: "Server Error" });
+  }
+};
+
 export const createExercise = async (req, res) => {
   const exercise = req.body;
 
