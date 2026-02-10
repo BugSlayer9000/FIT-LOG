@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export const getExercises = async (_req, res) => {
   try {
-    const exercises = await Exercise.find();
+    const exercises = await Exercise.find().sort({createdAt : -1});
     res.status(200).json({ success: true, data: exercises });
   } catch (error) {
     console.log("Error fetching the products", error);
