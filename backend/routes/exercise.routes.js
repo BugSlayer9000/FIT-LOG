@@ -1,6 +1,4 @@
 import express, { Router } from "express";
-import mongoose from "mongoose";
-import Exercise from "../models/exercise.model.js";
 import {
   getExercises,
   createExercise,

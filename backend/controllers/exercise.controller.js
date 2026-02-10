@@ -36,7 +36,9 @@ export const updateExercise = async (req, res) => {
   const exercise = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ success: false, message: "Server Error" });
+    return res
+      .status(404)
+      .json({ success: false, message: "Invalid Exercise ID" });
   }
 
   try {
@@ -52,11 +54,17 @@ export const updateExercise = async (req, res) => {
 export const deleteExercise = async (req, res) => {
   const { id } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Invalid Exercise ID" });
+  }
+
   try {
     await Exercise.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "Exercise Deleted" });
   } catch (error) {
     console.log("Error in deleting product", error);
-    res.status(404).json({ success: false, message: "Exercise not found" });
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
