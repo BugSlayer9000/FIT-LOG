@@ -1,11 +1,25 @@
-import React from 'react'
+import { FaRegPlusSquare } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+// [border:1px_solid_white]
 
 const NavBar = () => {
   return (
-    <div>
-      NavBar
+    <div className="bg-base-300 border-b border-base-content/10 ">
+      <div className="mx-auto max-w-6xl p-4">
+        <div className="flex items-center justify-between">
+          <Link to={"/"} className="text-4xl font-bold text-green-500 font-mono">
+            FIT LOG
+          </Link>
+          <div className="flex items-center gap-4">
+            <Link to={"/create"} className="btn btn-neutral">
+              <FaRegPlusSquare size={23}/> Add an exercise
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

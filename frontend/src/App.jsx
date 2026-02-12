@@ -7,13 +7,12 @@ import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
-    <div>
-      <NavBar/>
+    <div className="relative h-full w-full">
+      <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/exercise/:id" element={<EditPage />} />
-
       </Routes>
     </div>
   );

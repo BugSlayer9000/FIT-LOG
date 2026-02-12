@@ -5,7 +5,9 @@ const HomePage = () => {
     useEffect(() => {
         document.title = "HOME | FITLOG"
     },[])
-  return <div>Home Page</div>;
+  return <div>
+    <button className="btn btn-ghost">Button</button>
+  </div>;
 };
 
 export default HomePage;
