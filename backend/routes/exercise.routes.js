@@ -13,7 +13,7 @@ const router = express.Router();
 router.get("/", getExercises);
 
 // get one Exercise
-router.get("/exercise/:id", getOneWorkout);
+router.get("/:id", getOneWorkout);
 
 // add an exercise
 router.post("/", createExercise);
