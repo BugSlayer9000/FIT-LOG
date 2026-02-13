@@ -84,12 +84,13 @@ Workout {
 
 ### MVP Success Criteria
 
-- [ ]  Can add a workout
-- [ ]  Can see all workouts
-- [ ]  Can edit a workout
-- [ ]  Can delete a workout
-- [ ]  Data persists in MongoDB
-- [ ]  No errors in console
+- [x]  Can add a workout
+- [x]  Can see all workouts
+- [x]  Can edit a workout
+- [x]  Can delete a workout
+- [x]  Data persists in MongoDB
+- [x]  No errors in console
+## Finished the mvp in 13/02/26
 
 **🎯 STOP HERE AND GET THIS WORKING FIRST!**
 
