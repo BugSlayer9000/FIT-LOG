@@ -42,7 +42,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div className="border rounded-4xl m-auto mt-10 flex items-center bg-base-100  justify-center h-min w-min">
+    <div className=" rounded-4xl m-auto mt-10 flex items-center bg-base-100  justify-center h-min w-min">
       <div className="rounded-2xl mx-auto px-4 py-8">
         <Link to={"/"} className="btn btn-accent mb-6">
           <FaArrowLeft size={25} /> Back to exercises
