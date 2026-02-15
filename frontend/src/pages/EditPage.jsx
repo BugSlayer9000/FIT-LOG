@@ -49,7 +49,7 @@ const EditPage = () => {
     }
   };
 
-  const handleUpdate = async() => {
+  const handleUpdate = async () => {
     if (
       !exercise.name.trim() ||
       !exercise.sets ||
@@ -59,17 +59,17 @@ const EditPage = () => {
       toast.error("Must in All fields ! ");
     }
 
-    setSaving(true)
+    setSaving(true);
 
     try {
-      await api.put(`/exercises/${id}`, exercise)
-      toast.success("Exercise Updated Successfully !")
-      navigate("/")
+      await api.put(`/exercises/${id}`, exercise);
+      toast.success("Exercise Updated Successfully !");
+      navigate("/");
     } catch (error) {
       console.log("Error Updating the Exercise!", error);
-      toast.error("Failed to update the note")
+      toast.error("Failed to update the note");
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
   };
 

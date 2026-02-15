@@ -7,3 +7,6 @@ export function formatDate(date) {
 }
 
 
+export function calculateVolume(sets, reps, weight) {
+    return sets * reps * weight
+}
