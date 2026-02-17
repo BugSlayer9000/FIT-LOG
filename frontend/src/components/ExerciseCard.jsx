@@ -14,8 +14,8 @@ const ExerciseCard = ({ exercise, onDelete }) => {
   const handleDecision = (result) => {
     if(result){
       onDelete(exercise._id)
-    } else{
-      showAlert(false)
+    } else if(!result){
+      setShowAlert(false)
     }
   }
 
@@ -56,10 +56,10 @@ const ExerciseCard = ({ exercise, onDelete }) => {
             <FaTrash size={18} />
             Delete
           </button>
-          <button className="btn btn-info btn-outline">
+          <Link className="btn btn-info btn-outline" to={`exercise/${exercise._id}`}>
             <AiFillEdit size={19} />
             Edit
-          </button>
+          </Link>
         </div>
       </div>
     </div>

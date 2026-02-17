@@ -3,32 +3,35 @@ import { useEffect } from "react";
 import api from "../lib/axios";
 import ExerciseCard from "../components/ExerciseCard";
 import toast from "react-hot-toast";
+import { userExerciseStore } from "../store/userExerciseStore";
 
 const HomePage = () => {
-  const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchNotes = async () => {
-    try {
-      const res = await api.get("/exercises");
-      console.log(res.data.data);
-
-      setExercises(res.data.data);
-    } catch (error) {
-      console.log("Error fetching notes", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const exercises = userExerciseStore((state) => state.exercises);
+  const setExercises = userExerciseStore((state) => state.setExercises);
+  // const searchQuery = userExerciseStore((state) => state.searchQuery);
 
   useEffect(() => {
     document.title = "HOME | FITLOG";
+
+    const fetchNotes = async () => {
+      try {
+        const res = await api.get("/exercises");
+        console.log(res.data.data);
+
+        setExercises(res.data.data);
+      } catch (error) {
+        console.log("Error fetching notes", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchNotes();
-  }, []);
+  }, [setExercises, setLoading]);
 
   const handleDelete = async (id) => {
-    console.log("Handle delete runs", id);
-
     try {
       await api.delete(`/exercises/${id}`);
       toast.success("Exercise Deleted");
@@ -36,8 +39,6 @@ const HomePage = () => {
       console.log("Error in handle Delete", error);
       toast.error("Server Error");
     }
-
-    fetchNotes();
   };
 
   return (
