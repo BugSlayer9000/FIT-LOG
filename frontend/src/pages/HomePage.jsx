@@ -10,7 +10,8 @@ const HomePage = () => {
 
   const exercises = userExerciseStore((state) => state.exercises);
   const setExercises = userExerciseStore((state) => state.setExercises);
-  // const searchQuery = userExerciseStore((state) => state.searchQuery);
+  const searchQuery = userExerciseStore((state) => state.searchQuery);
+  const deleteExercise = userExerciseStore((state) => state.deleteExercise)
 
   useEffect(() => {
     document.title = "HOME | FITLOG";
@@ -18,7 +19,6 @@ const HomePage = () => {
     const fetchNotes = async () => {
       try {
         const res = await api.get("/exercises");
-        console.log(res.data.data);
 
         setExercises(res.data.data);
       } catch (error) {
@@ -34,12 +34,17 @@ const HomePage = () => {
   const handleDelete = async (id) => {
     try {
       await api.delete(`/exercises/${id}`);
+      deleteExercise(id)
       toast.success("Exercise Deleted");
     } catch (error) {
       console.log("Error in handle Delete", error);
       toast.error("Server Error");
     }
   };
+
+  const filterdExercises = exercises.filter((ex) =>
+    ex.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   return (
     <div className="min-h-screen">
@@ -52,7 +57,7 @@ const HomePage = () => {
       ) : (
         <div className="max-w7xl mx-auto p-4 mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {exercises.map((exercise) => (
+            {filterdExercises.map((exercise) => (
               <ExerciseCard
                 key={exercise._id}
                 exercise={exercise}

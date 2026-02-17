@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import api from "../lib/axios";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
+import { userExerciseStore } from "../store/userExerciseStore";
 
 const EditPage = () => {
   const [exercise, setExercise] = useState(null);
@@ -14,11 +15,14 @@ const EditPage = () => {
 
   const navigate = useNavigate();
 
+  const updateExercise = userExerciseStore((state) => state.updateExercise);
+
   useEffect(() => {
     const fetchNote = async () => {
       try {
         const res = await api.get(`/exercises/${id}`);
         setExercise(res.data.data);
+        updateExercise(res.data.data);
       } catch (error) {
         console.log("Error in EditPage fetching", error);
         toast.error("Error fetching the Exercise ! ");
