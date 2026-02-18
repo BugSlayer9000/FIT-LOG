@@ -32,7 +32,7 @@ const EditPage = () => {
     };
 
     fetchNote();
-  }, [id]);
+  }, [id,updateExercise]);
 
   if (loading) {
     return <div>Loading...</div>;
