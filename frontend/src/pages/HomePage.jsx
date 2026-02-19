@@ -48,6 +48,9 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
+
+     
+
       {loading && (
         <div className="text-base text-center py-10">Loading Exercises</div>
       )}
