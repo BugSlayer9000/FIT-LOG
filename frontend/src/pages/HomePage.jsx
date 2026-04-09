@@ -5,16 +5,15 @@ import ExerciseCard from "../components/ExerciseCard";
 import toast from "react-hot-toast";
 import { userExerciseStore } from "../store/userExerciseStore";
 import NavBar from "../components/NavBar";
-import { formatDateV2 } from "../lib/utils";
+import DateCard from "../components/DateCard";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   const exercises = userExerciseStore((state) => state.exercises);
   const setExercises = userExerciseStore((state) => state.setExercises);
-  const searchQuery = userExerciseStore((state) => state.searchQuery);
-  const deleteExercise = userExerciseStore((state) => state.deleteExercise);
-  const SetGroupedExercises = userExerciseStore((state) => state.setGroupedByDateExercises)
+  const groupedExercises = userExerciseStore((state) => state.groupedExercises);
+  
 
   useEffect(() => {
     document.title = "HOME | FITLOG";
@@ -34,43 +33,11 @@ const HomePage = () => {
     fetchNotes();
   }, [setExercises, setLoading]);
 
-  const filterdByDates =  exercises.reduce((acc, curr) => {
-      let date = formatDateV2(new Date(curr.createdAt));
-
-      if (!acc[date]) {
-        acc[date] = [];
-      }
-      acc[date].push(curr);
-      return acc;
-    }, {});
-  
-  
-
-  console.log(filterdByDates);
-  
-  
-  const dates = Object.keys(filterdByDates);
+  const dates = Object.keys(groupedExercises);
   console.log("dates", dates);
-  
-
-
-  const handleDelete = async (id) => {
-    try {
-      await api.delete(`/exercises/${id}`);
-      deleteExercise(id);
-      toast.success("Exercise Deleted");
-    } catch (error) {
-      console.log("Error in handle Delete", error);
-      toast.error("Server Error");
-    }
-  };
-
-  const filterdExercises = exercises.filter((ex) =>
-    ex.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen border pb-30">
       <NavBar />
 
       {loading && (
@@ -80,21 +47,10 @@ const HomePage = () => {
       {exercises.length === 0 ? (
         <p>No Exercises Found</p>
       ) : (
-        <div className="max-w7xl mx-auto p-4 mt-6">
+        <div className="max-w7xl mx-auto p-2 mt-6 border ">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filterdExercises.map((exercise) => (
-              <ExerciseCard
-                key={exercise._id}
-                exercise={exercise}
-                onDelete={handleDelete}
-              />
-            ))}
-          </div>
-          <div>
             {dates.map((date) => (
-              <div key={date}>
-                <p>{filterdByDates[date][0].name}</p>
-              </div>
+              <DateCard key={date} date={date} />
             ))}
           </div>
         </div>

@@ -7,13 +7,13 @@ import { userExerciseStore } from "../store/userExerciseStore";
 // [border:1px_solid_white]
 
 const NavBar = () => {
+  
   const location = useLocation();
-
   const searchQuery = userExerciseStore((state) => state.searchQuery)
   const setSearchQuery = userExerciseStore((state) => state.setSearchQuery)
-
-
   const isHomePage = location.pathname === "/";
+
+
 
   return (
     <div className="bg-base-300 border-b border-base-content/10 ">
@@ -27,6 +27,7 @@ const NavBar = () => {
             FIT LOG
           </Link>
           </div>
+
           <div className="btm-nav items-center gap-4 p-3">
             <div className="flex-1">
               <Link to={"/create"} className="btn btn-neutral">
