@@ -202,10 +202,10 @@ export function groupWorkoutsByDate(workouts) {
 
 ### Phase 2 Success Criteria
 
-- [ ]  Workouts grouped by date
+- [x]  Workouts grouped by date
 - [x]  Can search/filter exercises
 - [x]  Volume calculations show correctly
-- [ ]  Loading states look good
+- [x]  Loading states look good
 - [x]  Responsive on mobile
 
 ---
