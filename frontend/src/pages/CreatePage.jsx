@@ -17,8 +17,6 @@ const CreatePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Handle Submit ran");
-
     if (!name || !sets || !reps || !weight) {
       toast.error("All fields required !");
       return;

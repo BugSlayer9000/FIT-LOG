@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import api from "../lib/axios";
 import ExerciseCard from "../components/ExerciseCard";
-import toast from "react-hot-toast";
 import { userExerciseStore } from "../store/userExerciseStore";
 import NavBar from "../components/NavBar";
 import DateCard from "../components/DateCard";
@@ -13,7 +12,6 @@ const HomePage = () => {
   const exercises = userExerciseStore((state) => state.exercises);
   const setExercises = userExerciseStore((state) => state.setExercises);
   const groupedExercises = userExerciseStore((state) => state.groupedExercises);
-  
 
   useEffect(() => {
     document.title = "HOME | FITLOG";
@@ -34,10 +32,9 @@ const HomePage = () => {
   }, [setExercises, setLoading]);
 
   const dates = Object.keys(groupedExercises);
-  console.log("dates", dates);
 
   return (
-    <div className="min-h-screen border pb-30">
+    <div className="min-h-screen pb-20 ">
       <NavBar />
 
       {loading && (
@@ -47,7 +44,7 @@ const HomePage = () => {
       {exercises.length === 0 ? (
         <p>No Exercises Found</p>
       ) : (
-        <div className="max-w7xl mx-auto p-2 mt-6 border ">
+        <div className="max-w7xl mx-auto p-2 mt-1 ">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {dates.map((date) => (
               <DateCard key={date} date={date} />

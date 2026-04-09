@@ -16,7 +16,8 @@ const NavBar = () => {
 
 
   return (
-    <div className="bg-base-300 border-b border-base-content/10 ">
+
+      // top nav
       <div className="flex items-center justify-center  mx-auto max-w-6xl p-4">
         <div className="flex flex-col items-center justify-between">
           <div className="w-full flex justify-center items-center">
@@ -28,7 +29,8 @@ const NavBar = () => {
           </Link>
           </div>
 
-          <div className="btm-nav items-center gap-4 p-3">
+          {/* bottom nav */}
+          <div className="w-full flex items-center gap-4 p-4 btm-nav z-50 ">
             <div className="flex-1">
               <Link to={"/create"} className="btn btn-neutral">
               <FaRegPlusSquare size={23} /> <span className="hidden sm:block"> Add an exercise</span>
@@ -49,7 +51,7 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

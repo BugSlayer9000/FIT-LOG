@@ -9,13 +9,11 @@ function DateCard({ date }) {
   const deleteExercise = userExerciseStore((state) => state.deleteExercise);
   const groupedExercises = userExerciseStore((state) => state.groupedExercises);
 
-    const dateforExercises = groupedExercises[date] || []
+  const dateforExercises = groupedExercises[date] || [];
 
   const filteredExercises = dateforExercises.filter((ex) =>
     ex.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
-
-  console.log(filteredExercises);
 
   const handleDelete = async (id) => {
     try {
@@ -39,11 +37,13 @@ function DateCard({ date }) {
           </div>
           <div className=" flex flex-col gap-4 p-2">
             {filteredExercises.map((exercise) => {
-              return <ExerciseCard
-                key={exercise._id}
-                exercise={exercise}
-                onDelete={handleDelete}
-              />;
+              return (
+                <ExerciseCard
+                  key={exercise._id}
+                  exercise={exercise}
+                  onDelete={handleDelete}
+                />
+              );
             })}
           </div>
         </div>
