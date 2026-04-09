@@ -28,14 +28,14 @@ const ExerciseCard = ({ exercise, onDelete }) => {
           <Alert message={"Are you sure ? "} onDecision={handleDecision} />
         </div>
       )}
-      <div className="card-body">
-        <h2 className="card-title font-bold justify-center pb-4 text-center">
+      <div className="card-body p-4">
+        <h2 className="card-title text-2xl font-bold justify-center pb-1 text-center">
           {exercise.name}
         </h2>
         <p className="card text-xl font-mono">
           {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} KGs
         </p>
-        <p className="text text-xl">
+        <p className="text text-lg">
           Volume :{" "}
           {calculateVolume(
             exercise.sets,
@@ -44,12 +44,12 @@ const ExerciseCard = ({ exercise, onDelete }) => {
           ).toLocaleString()}{" "}
           KGs{" "}
         </p>
-        <p className="text text-xl">
+        <p className="text text-sm">
           Date : {formatDate(new Date(exercise.updatedAt))}
         </p>
-        <div className="card-actions justify-end pt-2">
+        <div className="card-actions justify-center items-center pt-2">
           <button
-            className="btn btn-error btn-outline"
+            className="btn btn-error btn-outline flex-1"
             onClick={() => {
               setShowAlert(true);
             }}
@@ -58,7 +58,7 @@ const ExerciseCard = ({ exercise, onDelete }) => {
             Delete
           </button>
           <Link
-            className="btn btn-info btn-outline"
+            className="btn btn-info btn-outline flex-1"
             to={`exercise/${exercise._id}`}
           >
             <AiFillEdit size={19} />

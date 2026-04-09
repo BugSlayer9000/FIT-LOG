@@ -1,6 +1,7 @@
 import { create } from "zustand";
+import { formatDateV2 } from "../lib/utils";
 
-export const userExerciseStore = create((set) => ({
+export const userExerciseStore = create((set, get) => ({
   // states
   exercises: [],
   searchQuery: "",
@@ -29,4 +30,17 @@ export const userExerciseStore = create((set) => ({
   setSearchQuery: (query) => set({ searchQuery: query }),
 
   setLoading: (value) => set({ isLoading: value }),
+
+  filterExerciseBydate: (exercises) => {
+    exercises.reduce((acc, curr) => {
+      let date = formatDateV2(new Date(curr.createdAt));
+
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(curr);
+      return acc;
+    }, {});
+    
+  },
 }));

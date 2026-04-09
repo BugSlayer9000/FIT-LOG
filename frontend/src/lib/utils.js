@@ -6,6 +6,15 @@ export function formatDate(date) {
     })
 }
 
+export function formatDateV2(date) {
+    return date.toLocaleDateString("en-US",{
+        month : "numeric",
+        day : "numeric",
+        year : "numeric"
+    })
+}
+
+
 
 export function calculateVolume(sets, reps, weight) {
     return sets * reps * weight

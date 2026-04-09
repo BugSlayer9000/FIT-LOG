@@ -4,6 +4,8 @@ import api from "../lib/axios";
 import ExerciseCard from "../components/ExerciseCard";
 import toast from "react-hot-toast";
 import { userExerciseStore } from "../store/userExerciseStore";
+import NavBar from "../components/NavBar";
+import { formatDateV2 } from "../lib/utils";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,8 @@ const HomePage = () => {
   const exercises = userExerciseStore((state) => state.exercises);
   const setExercises = userExerciseStore((state) => state.setExercises);
   const searchQuery = userExerciseStore((state) => state.searchQuery);
-  const deleteExercise = userExerciseStore((state) => state.deleteExercise)
+  const deleteExercise = userExerciseStore((state) => state.deleteExercise);
+  const {filterExerciseBydate} = userExerciseStore()
 
   useEffect(() => {
     document.title = "HOME | FITLOG";
@@ -31,10 +34,18 @@ const HomePage = () => {
     fetchNotes();
   }, [setExercises, setLoading]);
 
+
+  console.log(filterExerciseBydate);
+  
+  const dates = Object.keys(filterExerciseBydate);
+  console.log(dates);
+  
+
+
   const handleDelete = async (id) => {
     try {
       await api.delete(`/exercises/${id}`);
-      deleteExercise(id)
+      deleteExercise(id);
       toast.success("Exercise Deleted");
     } catch (error) {
       console.log("Error in handle Delete", error);
@@ -48,8 +59,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
-
-     
+      <NavBar />
 
       {loading && (
         <div className="text-base text-center py-10">Loading Exercises</div>
@@ -66,6 +76,13 @@ const HomePage = () => {
                 exercise={exercise}
                 onDelete={handleDelete}
               />
+            ))}
+          </div>
+          <div>
+            {dates.map((date) => (
+              <div key={date}>
+                <p>{date}</p>
+              </div>
             ))}
           </div>
         </div>
