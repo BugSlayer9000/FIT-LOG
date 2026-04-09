@@ -1,14 +1,16 @@
 import { create } from "zustand";
-import { formatDateV2 } from "../lib/utils";
 
-export const userExerciseStore = create((set, get) => ({
+export const userExerciseStore = create((set) => ({
   // states
   exercises: [],
+
   searchQuery: "",
   isLoading: false,
 
   // actions
   setExercises: (exercises) => set({ exercises }),
+
+  
 
   addExercise: (exercise) =>
     set((state) => ({
@@ -30,17 +32,4 @@ export const userExerciseStore = create((set, get) => ({
   setSearchQuery: (query) => set({ searchQuery: query }),
 
   setLoading: (value) => set({ isLoading: value }),
-
-  filterExerciseBydate: (exercises) => {
-    exercises.reduce((acc, curr) => {
-      let date = formatDateV2(new Date(curr.createdAt));
-
-      if (!acc[date]) {
-        acc[date] = [];
-      }
-      acc[date].push(curr);
-      return acc;
-    }, {});
-    
-  },
 }));

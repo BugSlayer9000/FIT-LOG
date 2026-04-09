@@ -14,7 +14,7 @@ const HomePage = () => {
   const setExercises = userExerciseStore((state) => state.setExercises);
   const searchQuery = userExerciseStore((state) => state.searchQuery);
   const deleteExercise = userExerciseStore((state) => state.deleteExercise);
-  const {filterExerciseBydate} = userExerciseStore()
+  const SetGroupedExercises = userExerciseStore((state) => state.setGroupedByDateExercises)
 
   useEffect(() => {
     document.title = "HOME | FITLOG";
@@ -34,11 +34,23 @@ const HomePage = () => {
     fetchNotes();
   }, [setExercises, setLoading]);
 
+  const filterdByDates =  exercises.reduce((acc, curr) => {
+      let date = formatDateV2(new Date(curr.createdAt));
 
-  console.log(filterExerciseBydate);
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(curr);
+      return acc;
+    }, {});
   
-  const dates = Object.keys(filterExerciseBydate);
-  console.log(dates);
+  
+
+  console.log(filterdByDates);
+  
+  
+  const dates = Object.keys(filterdByDates);
+  console.log("dates", dates);
   
 
 
@@ -81,7 +93,7 @@ const HomePage = () => {
           <div>
             {dates.map((date) => (
               <div key={date}>
-                <p>{date}</p>
+                <p>{filterdByDates[date][0].name}</p>
               </div>
             ))}
           </div>
