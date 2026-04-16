@@ -7,21 +7,21 @@ import {
   getOneWorkout,
 } from "../controllers/exercise.controller.js";
 
-const router = express.Router();
+const ExerciseRouter = express.Router();
 
 // get all the Exercises
-router.get("/", getExercises);
+ExerciseRouter.get("/", getExercises);
 
 // get one Exercise
-router.get("/:id", getOneWorkout);
+ExerciseRouter.get("/:id", getOneWorkout);
 
 // add an exercise
-router.post("/", createExercise);
+ExerciseRouter.post("/", createExercise);
 
 // update an Exercise
-router.put("/:id", updateExercise);
+ExerciseRouter.put("/:id", updateExercise);
 
 // delete the exercise
-router.delete("/:id", deleteExercise);
+ExerciseRouter.delete("/:id", deleteExercise);
 
-export default router;
+export default ExerciseRouter;

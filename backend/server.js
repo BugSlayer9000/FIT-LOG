@@ -4,7 +4,8 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { connectDB } from "./config/db.js";
-import router from "./routes/exercise.routes.js";
+import ExerciseRouter from "./routes/exercise.routes.js";
+import WorkoutRouter from "./routes/workout.routes.js";
 
 dotenv.config();
 
@@ -15,7 +16,8 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 
-app.use("/api/exercises", router);
+app.use("/api/exercises", ExerciseRouter);
+app.use("/api/workouts", WorkoutRouter)
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
