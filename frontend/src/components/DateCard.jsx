@@ -27,15 +27,15 @@ function DateCard({ date }) {
   };
 
   return (
-    <div>
+    <div> 
       {filteredExercises.length === 0 ? (
         <p>No exercises found</p>
       ) : (
-        <div className="card m-2 border border-accent p-2 bg-accent/50">
+        <div className="card m-2 border-accent p-2 bg-accent/50">
           <div className="card-title text-xl text-primary-content">
             <p>Date - {date}</p>
           </div>
-          <div className=" flex flex-col gap-4 p-2">
+          <div className=" flex flex-col gap-4 p-2 md:min-w-96 md:p-4">
             {filteredExercises.map((exercise) => {
               return (
                 <ExerciseCard

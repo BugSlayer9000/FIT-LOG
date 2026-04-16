@@ -6,7 +6,7 @@ const Alert = ({ message, onDecision }) => {
   };
 
   return (
-    <div role="alert" className="alert flex justify-center flex-col">
+    <div role="alert" className="alert flex justify-center flex-col bg-accent">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -20,8 +20,8 @@ const Alert = ({ message, onDecision }) => {
           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
         ></path>
       </svg>
-      <span>{message}</span>
-      <div>
+      <span className="text-2xl text-black">{message}</span>
+      <div className="flex gap-8 mt-5">
         <button className="btn btn-sm" onClick={() => handleClick(false)}>
           Cancel
         </button>
