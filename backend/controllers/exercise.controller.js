@@ -11,7 +11,7 @@ export const getExercises = async (_req, res) => {
   }
 };
 
-export const getOneWorkout = async (req, res) => {
+export const getOneExercise = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {

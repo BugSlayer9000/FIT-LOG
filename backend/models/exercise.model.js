@@ -6,16 +6,16 @@ const exerciseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    sets: {
-      type: Number,
+    category: {
+      type: String,
       required: true,
     },
-    reps: {
-      type: Number,
+    muscleGroup: {
+      type: String,
       required: true,
     },
-    weight: {
-      type: Number,
+    equipment: {
+      type: String,
       required: true,
     },
   },

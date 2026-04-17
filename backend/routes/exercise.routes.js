@@ -4,7 +4,7 @@ import {
   createExercise,
   updateExercise,
   deleteExercise,
-  getOneWorkout,
+  getOneExercise,
 } from "../controllers/exercise.controller.js";
 
 const ExerciseRouter = express.Router();
@@ -13,7 +13,7 @@ const ExerciseRouter = express.Router();
 ExerciseRouter.get("/", getExercises);
 
 // get one Exercise
-ExerciseRouter.get("/:id", getOneWorkout);
+ExerciseRouter.get("/:id", getOneExercise);
 
 // add an exercise
 ExerciseRouter.post("/", createExercise);
