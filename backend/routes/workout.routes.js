@@ -19,12 +19,17 @@ WorkoutRouter.get("/", async (req, res) => {
 WorkoutRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
 
- 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+     res.status(400).json({success:false, message:"Invalid Workout Id"})
+  }
 
   try {
     const workout = await Workout.findById(id);
     if (!workout) {
-        return res.status(404).json({success:false, message:"Workout not found"})
+      console.log("Workout not found");
+      return res
+        .status(404)
+        .json({ success: false, message: "Workout not found" });
     }
     res.status(200).json({ success: true, data: workout });
   } catch (error) {
@@ -54,6 +59,52 @@ WorkoutRouter.post("/", async (req, res) => {
   }
 });
 
-export default WorkoutRouter;
+//Update a a workout
+WorkoutRouter.put("/:id", async (req, res) => {
+  const { id } = req.params;
 
-//
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+     res.status(400).json({success:false, message:"Invalid Workout Id"})
+  }
+
+  try {
+    const workout = await Workout.findById(id);
+    if (!workout) {
+      console.log("workout not found");
+      return res
+        .status(404)
+        .json({ success: false, message: "Workout not found" });
+    }
+    const updatedWorkout = await Workout.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    res.status(200).json({success:true, data:updatedWorkout})
+  } catch (error) {
+    console.log("Error in workout updateWorkout",error);
+    res.status(501).json({ success: false, message: "Server Error" });
+  }
+});
+
+// delete a workout
+WorkoutRouter.delete("/:id", async (req,res) => {
+  const {id} = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+     res.status(400).json({success:false, message:"Invalid Workout Id"})
+  }
+
+  try {
+    const workout = await Workout.findById(id)
+    if (!workout) {
+      res.status(404).json({success:false, message:"Workout not found"})
+    }
+
+    await workout.deleteOne()
+    res.status(200).json({success:true, message:"Workout Deleted"})
+  } catch (error) {
+    console.log("Error in the workoutDelete",error);
+    res.status(500).json({success:false,message:"Server Error"})
+  }
+})
+
+export default WorkoutRouter;
