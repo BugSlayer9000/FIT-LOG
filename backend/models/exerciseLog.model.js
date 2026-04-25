@@ -19,6 +19,7 @@ const exerciseLogSchema = new mongoose.Schema({
     {
       weight: Number,
       reps: Number,
+      time : Number,
     },
   ],
   notes: String,
