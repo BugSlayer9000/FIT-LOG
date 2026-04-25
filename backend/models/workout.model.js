@@ -8,8 +8,9 @@ const workoutSchema = new mongoose.Schema(
     },
     exercises: [
       {
-        exercise: { type: String, required: true },
-        sets: [{ weight: Number, reps: Number }],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Exercise",
+        required: true,
       },
     ],
     notes: {

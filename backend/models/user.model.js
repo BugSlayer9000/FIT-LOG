@@ -15,13 +15,13 @@ const userSchema = new mongoose.Schema({
     minLength: 6,
   },
   workouts: [
-  {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Workout",
-  },
-],
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Workout",
+    },
+  ],
   weight: {
-    type: Number
+    type: Number,
   },
   height: {
     type: Number,
@@ -32,4 +32,4 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", userSchema);
-export default User
+export default User;

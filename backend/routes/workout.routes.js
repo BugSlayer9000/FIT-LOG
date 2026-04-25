@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import {
-  addWorkout,
+  getAllWrokouts,
   createWorkout,
   deleteWorkout,
   getOneWorkout,
@@ -9,8 +9,8 @@ import {
 
 const WorkoutRouter = express.Router();
 
-// add a workout
-WorkoutRouter.get("/", addWorkout);
+// Get all workouts
+WorkoutRouter.get("/", getAllWrokouts);
 
 // get OneWorkoutMethod if needed
 WorkoutRouter.get("/:id", getOneWorkout);

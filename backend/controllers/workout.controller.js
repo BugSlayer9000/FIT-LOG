@@ -1,7 +1,7 @@
 import Workout from "../models/workout.model.js";
 import mongoose from "mongoose";
 
-export const addWorkout = async (req, res) => {
+export const getAllWrokouts = async (req, res) => {
   try {
     const workouts = await Workout.find().sort({ createdAt: -1 });
     res.status(200).json({ success: true, data: workouts });
