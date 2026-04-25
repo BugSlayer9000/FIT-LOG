@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express, { json, Router } from "express";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { genarateToken } from "../lib/utils.js";
@@ -11,7 +11,7 @@ userAuth.post("/signup", async (req, res) => {
     req.body;
 
   try {
-    if ((!fullname, !email, !password)) {
+    if (!fullname || !email || !password) {
       return res.status(400).json({ message: "all fields are required" });
     }
 
@@ -63,8 +63,56 @@ userAuth.post("/signup", async (req, res) => {
     res.status(500).json({ message: "Internal Server error" });
   }
 });
+
+// login
+userAuth.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      res.status(400).json({ message: "Invalid Credentials" });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      res.status(400).json({ message: "Password Incorrect" });
+    }
+
+    genarateToken(user._id, res);
+
+    res.status(200).json({
+      _id: user._id,
+      fullname: user.fullname,
+      emai: user.email,
+      workouts: user.workouts,
+      weight: user.weight,
+      height: user.height,
+      profilePic: user.profilePic,
+    });
+  } catch (error) {
+    console.log("Error in the login controller", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 // ✅ passed in postman
 
+// logout
+userAuth.post("/logout", async (req, res) => {
+  try {
+    res.cookie("jwt","", { maxAge: 0 });
+    (res.status(200).json({ message: "Logged out successfully" }));
+  } catch (error) {
+    console.log("Error in the logout controller",error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+// ✅ passed in postman
 
+// TODO 
+// Update profile controller 
+// checkout 
 
 export default userAuth;
