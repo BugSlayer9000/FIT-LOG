@@ -4,6 +4,10 @@ import { FaSearch } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { userExerciseStore } from "../store/userExerciseStore";
 
+import { CgProfile } from "react-icons/cg";
+import { FaDumbbell } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
+
 // [border:1px_solid_white]
 
 const NavBar = () => {
@@ -30,7 +34,10 @@ const NavBar = () => {
           <div className="flex-1">
             <Link to={"/create"} className="btn btn-neutral">
               <FaRegPlusSquare size={23} />{" "}
-              <span className="hidden sm:block md:text-xl"> Add an exercise</span>
+              <span className="hidden sm:block md:text-xl">
+                {" "}
+                Add an exercise
+              </span>
             </Link>
           </div>
           {isHomePage && (
@@ -47,25 +54,27 @@ const NavBar = () => {
           )}
         </div>
         {/* bottom nav - mobile*/}
-        <div className="w-full flex items-center gap-4 p-4 btm-nav z-50 md:hidden   ">
-          <div className="flex-1">
-            <Link to={"/create"} className="btn btn-neutral">
-              <FaRegPlusSquare size={23} />{" "}
-              <span className="hidden sm:block"> Add an exercise</span>
+        <div className="w-full flex items-center gap-4 p-2 h-20 btm-nav z-50 md:hidden bg-accent/80 rounded-full mb-3">
+          <div className="flex flex-row justify-evenly items-center w-full">
+            <Link to="/" className="border-opacity-70 border border-black/15 flex flex-col items-center justify-center h-full flex-1 m-4 backdrop-blur-md bg-black/20 rounded-full">
+              <div className="my-1">
+                <CgProfile size={20} />
+              </div>
+              <span className="text-lg">Profile</span>
             </Link>
+            <button className="border-opacity-70 border border-black/15 flex flex-col items-center justify-center h-full flex-1 m-4 backdrop-blur-md bg-black/20 rounded-full" onClick={"/"}>
+              <div className="my-1">
+                <FaPlay />
+              </div>
+              <span className="text-lg">start</span>
+            </button>
+            <button className="border-opacity-70 border border-black/15 flex flex-col items-center justify-center h-full flex-1 m-4 backdrop-blur-md bg-black/20 rounded-full">
+              <div className="my-1">
+                <FaDumbbell size={20} />
+              </div>
+              <span>Workouts</span>
+            </button>
           </div>
-          {isHomePage && (
-            <div className="card card-title flex flex-row">
-              <input
-                className="input input-bordered input-secondary w-full max-w-xs"
-                placeholder="search"
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              ></input>
-              <FaSearch className="pl-2" size={35} />
-            </div>
-          )}
         </div>
       </div>
     </div>

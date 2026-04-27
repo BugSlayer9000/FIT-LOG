@@ -1,16 +1,37 @@
 import React from "react";
 import { Routes, Route } from "react-router";
-import HomePage from "./pages/HomePage";
-import CreatePage from "./pages/CreatePage";
-import EditPage from "./pages/EditPage";
+
+// user 
+import ProfilePage from "./pages/ProfilePage";
+import UpdateProfilePage from "./pages/UpdateProfilePage";
+// exercises
+import ExercisesPage from "./pages/ExercisesPage";
+import UpdateExercisePage from "./pages/UpdateExercisePage";
+import AddExercisePage from "./pages/AddExercisePage";
+// workouts
+import WorkoutsPage from "./pages/WorkoutsPage";
+import AddWorkoutPage from "./pages/AddWorkoutPage";
+import StartWorkoutPage from "./pages/StartWorkoutPage";
 
 const App = () => {
   return (
     <div className="relative h-full w-full">
+      {/* TODO */}
+      {/*Auth route needed for every route*/}
+
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<CreatePage />} />
-        <Route path="/exercise/:id" element={<EditPage />} />
+        {/* User */}
+        <Route path="/profile" element={<ProfilePage/>} /> 
+        <Route path="/updateProfile" element={<UpdateProfilePage/>} />
+        {/* Exercises */}
+        <Route path="/exercises" element={<ExercisesPage/>} />
+        <Route path="/addexercise" element={<AddExercisePage/>} />
+        <Route path="/updateexercise" element={<UpdateExercisePage/>} />
+        {/* workouts */}
+        <Route path="/workouts" element={<WorkoutsPage/>} />
+        <Route path="/addWorkouts" element={<AddWorkoutPage/>} />
+        <Route path="/startWorkout" element={<StartWorkoutPage/>} />
+        
       </Routes>
     </div>
   );

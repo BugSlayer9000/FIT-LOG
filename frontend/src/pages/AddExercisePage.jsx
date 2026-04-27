@@ -4,7 +4,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import api from "../lib/axios";
 
-const CreatePage = () => {
+const AddExercisePage = () => {
   const [name, setName] = useState("");
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
@@ -110,4 +110,4 @@ const CreatePage = () => {
   );
 };
 
-export default CreatePage;
+export default AddExercisePage;

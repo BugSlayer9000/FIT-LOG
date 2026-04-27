@@ -113,6 +113,7 @@ userAuth.post("/logout", async (req, res) => {
 
 // TODO 
 // Update profile controller 
+  // updating profile will be - profile pic, 
 // checkout 
 
 export default userAuth;

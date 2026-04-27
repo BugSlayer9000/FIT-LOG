@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa";
 import { userExerciseStore } from "../store/userExerciseStore";
 
-const EditPage = () => {
+const UpdateExercisePage = () => {
   const [exercise, setExercise] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -24,7 +24,7 @@ const EditPage = () => {
         setExercise(res.data.data);
         updateExercise(res.data.data);
       } catch (error) {
-        console.log("Error in EditPage fetching", error);
+        console.log("Error in UpdateExercisePage fetching", error);
         toast.error("Error fetching the Exercise ! ");
       } finally {
         setLoading(false);
@@ -164,4 +164,4 @@ const EditPage = () => {
   );
 };
 
-export default EditPage;
+export default UpdateExercisePage;

@@ -6,7 +6,7 @@ import { userExerciseStore } from "../store/userExerciseStore";
 import NavBar from "../components/NavBar";
 import DateCard from "../components/DateCard";
 
-const HomePage = () => {
+const ExercisesPage = () => {
   const [loading, setLoading] = useState(true);
 
   const exercises = userExerciseStore((state) => state.exercises);
@@ -56,4 +56,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ExercisesPage;
