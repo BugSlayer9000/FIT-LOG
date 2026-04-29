@@ -6,22 +6,27 @@ import {
   getLatestLogForExercise,
   getLogsForOneExercise,
 } from "../controllers/exerciseLog.controller.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
 
 const ExerciseLogRouter = express.Router();
 
 // get all logs
-ExerciseLogRouter.get("/", getAllLogs);
+ExerciseLogRouter.get("/", protectRoute, getAllLogs);
 
 // get logs under exercise id
-ExerciseLogRouter.get("/:exerciseId", getLogsForOneExercise);
+ExerciseLogRouter.get("/:exerciseId", protectRoute, getLogsForOneExercise);
 
 // create a log
-ExerciseLogRouter.post("/", createALog);
+ExerciseLogRouter.post("/", protectRoute, createALog);
 
 // delete a log
-ExerciseLogRouter.delete("/:id", deleteLog);
+ExerciseLogRouter.delete("/:id", protectRoute, deleteLog);
 
 // get the latest exercise log
-ExerciseLogRouter.get("/:exerciseId/latest", getLatestLogForExercise);
+ExerciseLogRouter.get(
+  "/:exerciseId/latest",
+  protectRoute,
+  getLatestLogForExercise,
+);
 
 export default ExerciseLogRouter;

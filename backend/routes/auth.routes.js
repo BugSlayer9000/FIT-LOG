@@ -2,6 +2,7 @@ import express, { json, Router } from "express";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { genarateToken } from "../lib/utils.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
 
 const userAuth = express.Router();
 
@@ -102,18 +103,48 @@ userAuth.post("/login", async (req, res) => {
 // logout
 userAuth.post("/logout", async (req, res) => {
   try {
-    res.cookie("jwt","", { maxAge: 0 });
-    (res.status(200).json({ message: "Logged out successfully" }));
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
-    console.log("Error in the logout controller",error);
+    console.log("Error in the logout controller", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
 // ✅ passed in postman
 
-// TODO 
-// Update profile controller 
-  // updating profile will be - profile pic, 
-// checkout 
+// updateProfile
+// pass in weight height profile pic
+userAuth.put("/update-profile", protectRoute, async (req, res) => {
+  try {
+    const { weight, height, profilePic } = req.body;
+    const userId = req.user._id;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        profilePic,
+        weight,
+        height,
+      },
+      { new: true },
+    );
+
+    res.status(200).json({ success: true, data: updatedUser });
+  } catch (error) {
+    console.log("Error  in the Update Profile Pic", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+userAuth.get("/check",protectRoute,async (req,res) => {
+  try {
+    res.status(200).json(req.user) 
+  } catch (error) {
+    console.log("error in CheckAuthController");
+    res.status(500).json({message:"Internal Server Error"})
+  }
+})
+
+
 
 export default userAuth;

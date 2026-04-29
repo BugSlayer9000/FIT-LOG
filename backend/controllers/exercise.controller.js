@@ -32,7 +32,12 @@ export const getOneExercise = async (req, res) => {
 export const createExercise = async (req, res) => {
   const exercise = req.body;
 
-  if (!exercise.name || !exercise.category || !exercise.muscleGroup || !exercise.equipment) {
+  if (
+    !exercise.name ||
+    !exercise.category ||
+    !exercise.muscleGroup ||
+    !exercise.equipment
+  ) {
     return res
       .status(400)
       .json({ success: false, message: "Please fill all fields" });

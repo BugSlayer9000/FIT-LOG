@@ -6,22 +6,23 @@ import {
   deleteExercise,
   getOneExercise,
 } from "../controllers/exercise.controller.js";
+import { protectRoute } from "../middleware/auth.middleware.js";
 
 const ExerciseRouter = express.Router();
 
 // get all the Exercises
-ExerciseRouter.get("/", getExercises);
+ExerciseRouter.get("/",protectRoute, getExercises);
 
 // get one Exercise
-ExerciseRouter.get("/:id", getOneExercise);
+ExerciseRouter.get("/:id", protectRoute,getOneExercise);
 
 // add an exercise
-ExerciseRouter.post("/", createExercise);
+ExerciseRouter.post("/", protectRoute,createExercise);
 
 // update an Exercise
-ExerciseRouter.put("/:id", updateExercise);
+ExerciseRouter.put("/:id", protectRoute,updateExercise);
 
 // delete the exercise
-ExerciseRouter.delete("/:id", deleteExercise);
+ExerciseRouter.delete("/:id", protectRoute,deleteExercise);
 
 export default ExerciseRouter;
