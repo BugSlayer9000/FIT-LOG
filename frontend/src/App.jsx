@@ -16,7 +16,7 @@ import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
-    <div className="relative h-full w-full">
+    <div className="relative h-full w-full bg-accent-content">
       {/* TODO */}
       {/*Auth route needed for every route*/}
       <NavBar/>
