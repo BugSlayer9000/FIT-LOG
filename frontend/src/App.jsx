@@ -12,13 +12,14 @@ import AddExercisePage from "./pages/AddExercisePage";
 import WorkoutsPage from "./pages/WorkoutsPage";
 import AddWorkoutPage from "./pages/AddWorkoutPage";
 import StartWorkoutPage from "./pages/StartWorkoutPage";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
     <div className="relative h-full w-full">
       {/* TODO */}
       {/*Auth route needed for every route*/}
-
+      <NavBar/>
       <Routes>
         {/* User */}
         <Route path="/profile" element={<ProfilePage/>} /> 
@@ -28,7 +29,7 @@ const App = () => {
         <Route path="/addexercise" element={<AddExercisePage/>} />
         <Route path="/updateexercise" element={<UpdateExercisePage/>} />
         {/* workouts */}
-        <Route path="/workouts" element={<WorkoutsPage/>} />
+        <Route path="/" element={<WorkoutsPage/>} />
         <Route path="/addWorkouts" element={<AddWorkoutPage/>} />
         <Route path="/startWorkout" element={<StartWorkoutPage/>} />
         

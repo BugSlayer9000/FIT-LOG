@@ -1,46 +1,28 @@
 import { create } from "zustand";
-import { formatDateV2 } from "../lib/utils";
+import api from "../lib/axios";
+import toast from "react-hot-toast";
 
-const groupByDate = (exercises) => {
-  return exercises.reduce((acc, curr) => {
-    const date = formatDateV2(new Date(curr.createdAt));
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(curr);
-    return acc;
-  }, {});
-};
-
-export const userExerciseStore = create((set) => ({
+export const userExercisesStore = create((set,get) => ({
+  // states
   exercises: [],
-  groupedExercises: {},
-  searchQuery: "",
-  isLoading: false,
+  selectedExercise: null,
+  isLoading: null,
+  isSaving: null,
 
-  setExercises: (exercises) =>
-    set({ exercises, groupedExercises: groupByDate(exercises) }),
+  // functions
 
-  addExercise: (exercise) =>
-    set((state) => {
-      const exercises = [...state.exercises, exercise];
-      return { exercises, groupedExercises: groupByDate(exercises) };
-    }),
+  fetchExercises: async () => {
+    if (get().exercises.length > 0) return;
 
-  updateExercise: (updatedExercise) =>
-    set((state) => {
-      const exercises = state.exercises.map((ex) =>
-        ex._id === updatedExercise._id ? updatedExercise : ex
-      );
-      return { exercises, groupedExercises: groupByDate(exercises) };
-    }),
-
-  deleteExercise: (id) =>
-    set((state) => {
-      const exercises = state.exercises.filter((ex) => ex._id !== id);
-      return { exercises, groupedExercises: groupByDate(exercises) };
-    }),
-
-  setSearchQuery: (query) => set({ searchQuery: query }),
-  setLoading: (value) => set({ isLoading: value }),
+    set({ isLoading: true });
+    try {
+      const res = await api.get("/exercises");
+      const data = res.data.data;
+      set({ exercises: data });
+    } catch (error) {
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isLoading: false });
+    }
+  },
 }));
