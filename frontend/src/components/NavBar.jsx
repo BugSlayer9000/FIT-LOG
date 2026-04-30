@@ -6,20 +6,16 @@ import { VscDebugStart } from "react-icons/vsc";
 import { CgGym } from "react-icons/cg";
 
 const NavBar = () => {
-
   // todo
   // add the functioanlity where the user can see where they are by changing the color of the button according to the location
 
-
-  
-
   return (
-    <div className="navbar bg-accent-content flex items-center justify-center">
+    <div className="navbar bg-accent-content flex items-center justify-center border-b border-secondary/60">
       <span className="font-semibold text-4xl tracking-widest">FITLOG</span>
 
-      <div className="btm-nav z-50 bg-accent-content flex items-center justify-center">
+      <div className="btm-nav border-t border-secondary/60 z-50 bg-accent-content flex items-center justify-center">
         <ul
-          className="flex flex-row px-1 
+          className="flex flex-row px-1
 
         [&>li]:border 
       [&>li]:border-white/10 
@@ -36,7 +32,7 @@ const NavBar = () => {
         "
         >
           <li>
-            <Link to={"/profile"} >
+            <Link to={"/profile"}>
               <div>
                 <CgProfile size={25} />
               </div>
