@@ -22,7 +22,7 @@ const ExercisesPage = () => {
   console.log(exercises);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col ">
       <div className="border p-4 mb-4">
         <div className="flex flex-col gap-4 justify-center items-center">
           <input

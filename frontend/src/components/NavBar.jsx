@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 import { CgProfile } from "react-icons/cg";
 import { VscDebugStart } from "react-icons/vsc";
@@ -9,13 +10,15 @@ const NavBar = () => {
   // todo
   // add the functioanlity where the user can see where they are by changing the color of the button according to the location
 
-  return (
-    <div className="navbar bg-accent-content flex items-center justify-center border-b border-secondary/60">
-      <span className="font-semibold text-4xl tracking-widest">FITLOG</span>
+  const navigate = useNavigate()
 
-      <div className="btm-nav border-t border-secondary/60 z-50 bg-accent-content flex items-center justify-center">
+  return (
+    <div className="navbar bg-accent-content flex items-center justify-center border-b border-secondary/60 mt-10">
+      <div className=""><button className="btn btn-ghost font-semibold text-4xl tracking-widest" onClick={() =>navigate("/")} >FITLOG</button></div>
+
+      <div className="btm-nav btm-nav-lg border-t border-secondary/60 z-50 bg-accent-content flex items-center justify-center">
         <ul
-          className="flex flex-row px-1
+          className="flex flex-row px-1 mb-4
 
         [&>li]:border 
       [&>li]:border-white/10 

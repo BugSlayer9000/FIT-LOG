@@ -40,11 +40,13 @@ const App = () => {
   }
 
   return (
-    <div className="relative h-full w-full bg-accent-content">
+    <div className="relative h-screen w-full bg-accent-content flex flex-col">
       <Toaster />
 
       <NavBar />
+
       <Routes>
+        
         {/* Auth Routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signin" element={<SignIn />} />
@@ -74,19 +76,7 @@ const App = () => {
             authUser ? <UpdateExercisePage /> : <Navigate to={"/login"} />
           }
         />
-        {/* workouts */}
-        <Route
-          path="/"
-          element={authUser ? <WorkoutsPage /> : <Navigate to={"/login"} />}
-        />
-        <Route
-          path="/addWorkouts"
-          element={authUser ? <AddWorkoutPage /> : <Navigate to={"/login"} />}
-        />
-        <Route
-          path="/startWorkout"
-          element={authUser ? <StartWorkoutPage /> : <Navigate to={"/login"} />}
-        />
+        
       </Routes>
     </div>
   );

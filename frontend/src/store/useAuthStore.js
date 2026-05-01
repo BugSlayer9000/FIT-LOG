@@ -35,7 +35,7 @@ export const useAuthStore = create((set) => ({
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
-      set({ isSigningUp: true });
+      set({ isSigningUp: false });
     }
   },
 
@@ -48,7 +48,7 @@ export const useAuthStore = create((set) => ({
     } catch (error) {
       toast.error(error.response.data.message);
     } finally {
-      set({ isLogginIn: true });
+      set({ isLogginIn: false });
     }
   },
 

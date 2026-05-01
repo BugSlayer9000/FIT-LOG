@@ -20,12 +20,12 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
+    await login(formData);
     navigate("/exercises")
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center align-middleborder-t border-secondary/60">
+    <div className="h-screen flex flex-col justify-center align-middleborder-t border-secondary/60">
       <form
         onSubmit={handleSubmit}
         className="bg-neutral rounded-2xl p-4 flex flex-col mx-6"
@@ -60,7 +60,7 @@ const LoginPage = () => {
           }
         />
         <button
-          className="absolute inset-y-0 right-0 pr-16 mt-52"
+          className="absolute inset-y-0 right-0 pr-16 mt-60"
           type="button"
           onClick={() => setShowPassword(!showPassword)}
         >
@@ -74,6 +74,7 @@ const LoginPage = () => {
           type="submit"
           className="btn btn-secondary mt-4"
           disabled={isLogginIn}
+          
         >
           {isLogginIn ? "Logging in" : "submit"}
         </button>
