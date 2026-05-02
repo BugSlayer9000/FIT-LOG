@@ -60,7 +60,7 @@ const LoginPage = () => {
           }
         />
         <button
-          className="absolute inset-y-0 right-0 pr-16 mt-60"
+          className="absolute inset-y-0 right-0 pr-16 mt-52"
           type="button"
           onClick={() => setShowPassword(!showPassword)}
         >

@@ -76,6 +76,19 @@ const App = () => {
             authUser ? <UpdateExercisePage /> : <Navigate to={"/login"} />
           }
         />
+        {/* workouts */}
+        <Route
+          path="/"
+          element={authUser ? <WorkoutsPage /> : <Navigate to={"/login"} />}
+        />
+        <Route
+          path="/addWorkouts"
+          element={authUser ? <AddWorkoutPage /> : <Navigate to={"/login"} />}
+        />
+        <Route
+          path="/startWorkout"
+          element={authUser ? <StartWorkoutPage /> : <Navigate to={"/login"} />}
+        />
         
       </Routes>
     </div>

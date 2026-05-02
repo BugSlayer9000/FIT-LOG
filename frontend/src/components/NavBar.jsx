@@ -13,7 +13,7 @@ const NavBar = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="navbar bg-accent-content flex items-center justify-center border-b border-secondary/60 mt-10">
+    <div className="navbar bg-accent-content flex items-center justify-center border-b border-secondary/60 mt-1">
       <div className=""><button className="btn btn-ghost font-semibold text-4xl tracking-widest" onClick={() =>navigate("/")} >FITLOG</button></div>
 
       <div className="btm-nav btm-nav-lg border-t border-secondary/60 z-50 bg-accent-content flex items-center justify-center">
