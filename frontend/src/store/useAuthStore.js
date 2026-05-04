@@ -44,7 +44,6 @@ export const useAuthStore = create((set) => ({
     try {
       const res = await api.post("/auth/login", data);
       console.log(res.data);
-      
       set({ authUser: res.data });
       toast.success("Logged In successfully");
     } catch (error) {
@@ -64,5 +63,17 @@ export const useAuthStore = create((set) => ({
     }
   },
 
-  // todo - update profile method to add
+  updateProfile: async (data) => {
+    set({ isUpdating: true });
+    try {
+      const res = await api.put("/auth/update-profile", data);
+      set({ authUser: res.data });
+      toast.success("Profile Updated Successfully");
+    } catch (error) {
+      console.log("Error in update profile/useAuthStore", error);
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isUpdating: false });
+    }
+  },
 }));

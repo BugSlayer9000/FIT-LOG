@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Pen } from "lucide-react";
+import toast from "react-hot-toast";
 
 const ProfilePage = () => {
-  const { authUser } = useAuthStore();
-
-  console.log(authUser);
+  const { authUser, updateProfile, isUpdating } = useAuthStore();
 
   const [updateInfo, setUpdateInfo] = useState({
-    height: Number,
-    weight: Number,
+    height: "",
+    weight: "",
   });
 
   const [editHeight, setEditHeight] = useState(false);
@@ -19,7 +18,16 @@ const ProfilePage = () => {
     authUser;
   }, [authUser]);
 
-  // const handleUpdate = () => {};
+  const handleUpdate = async () => {
+    if (!updateInfo.height || !updateInfo.weight) {
+      return toast.error("Please fill in the fields correctly");
+    }
+
+    await updateProfile(updateInfo);
+
+    setEditHeight(false);
+    setEditWeight(false);
+  };
 
   return (
     <div className="h-full">
@@ -48,7 +56,7 @@ const ProfilePage = () => {
         >
           {/* HEIGHT */}
           <li>
-            {editHeight ? (
+            {!editHeight ? (
               <span>{authUser.height} CM </span>
             ) : (
               <input
@@ -56,7 +64,10 @@ const ProfilePage = () => {
                 className="input input-ghost input-bordered input-sm mr-3"
                 value={updateInfo.height || ""}
                 onChange={(e) =>
-                  setUpdateInfo({ ...updateInfo, height: e.target.value })
+                  setUpdateInfo({
+                    ...updateInfo,
+                    height: e.target.value.trim(),
+                  })
                 }
               />
             )}
@@ -71,15 +82,18 @@ const ProfilePage = () => {
 
           {/* WEIGHT */}
           <li>
-            {editWeight ? (
-              <span>{authUser.weight} CM </span>
+            {!editWeight ? (
+              <span>{authUser.weight} KG </span>
             ) : (
               <input
                 type="number"
                 className="input input-ghost input-bordered input-sm mr-3"
                 value={updateInfo.weight || ""}
                 onChange={(e) =>
-                  setUpdateInfo({ ...updateInfo, weight: e.target.value })
+                  setUpdateInfo({
+                    ...updateInfo,
+                    weight: e.target.value.trim(),
+                  })
                 }
               />
             )}
@@ -92,11 +106,15 @@ const ProfilePage = () => {
             </button>
           </li>
           <li>Birthday is to be implemented</li>
-          <li>Number of workouts - {authUser.workouts.length}</li>
+          <li>Number of workouts - {authUser?.workouts?.length || 0}</li>
         </ul>
-
+        {/*  */}
         <div className="flex justify-end mt-2">
-          <button className="btn btn-sm btn-outline btn-ghost  mr-5">
+          <button
+            className={`btn btn-sm btn-outline btn-ghost  mr-5`}
+            onClick={() => handleUpdate()}
+            disabled={isUpdating}
+          >
             Update
           </button>
         </div>

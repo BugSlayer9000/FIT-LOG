@@ -24,7 +24,6 @@ userAuth.post("/login", login);
 userAuth.post("/logout", logout);
 
 // updateProfile
-
 userAuth.put("/update-profile", protectRoute, updateProfile);
 
 userAuth.get("/check", protectRoute, chekcAuth);
