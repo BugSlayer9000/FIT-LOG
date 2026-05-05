@@ -118,6 +118,10 @@ const ProfilePage = () => {
             Update
           </button>
         </div>
+        {/* TODO - add Charts here check figma */}
+        {/* <div className="border text-zinc-50">
+          
+        </div> */}
       </div>
     </div>
   );
