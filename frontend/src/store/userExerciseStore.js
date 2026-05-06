@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 export const userExercisesStore = create((set,get) => ({
   // states
   exercises: [],
-  selectedExercise: null,
+  selectedExercise: [],
   isLoading: null,
   isSaving: null,
 
@@ -25,4 +25,17 @@ export const userExercisesStore = create((set,get) => ({
       set({ isLoading: false });
     }
   },
+
+  getExerciseById : async (id) => {
+    set({isLoading:true})
+    try {
+      const res = await api.get(`/exercises${id}`)
+      res.data.data
+
+    } catch (error) {
+      toast.error("Error Try again")
+      console.log("Error",error);
+      
+    }
+  }
 }));
