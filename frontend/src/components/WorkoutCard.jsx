@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { userExercisesStore } from "../store/userExerciseStore";
+import { formatDateV2 } from "../lib/utils";
 
 const WorkoutCard = ({ workout }) => {
   const { exercises, fetchExercises } = userExercisesStore();
@@ -12,10 +13,10 @@ const WorkoutCard = ({ workout }) => {
 
 
   return (
-    <div className="border p-1">
-      <div className="border">
-        <span>{workout.workoutName}</span>
-        <div className="">
+    <button className="bg-primary/40 border-primary rounded-lg p-1">
+      <div className=" flex flex-col p-3">
+        <span className="text-xl text-left font-semibold text-zinc-300 ml-1">{workout.workoutName}</span>
+        <div className="border border-primary-content/50 mt-2 p-2 bg-primary-content/40 rounded-md">
           {/* get all the exercises from exercises store */}
           {exercises.map((exercise) => {
             return (
@@ -23,7 +24,7 @@ const WorkoutCard = ({ workout }) => {
                 {/* gets the workout array from the passed down workout */}
                 {workout.exercises.map((exerciseId) => {
                   return (
-                    <div>
+                    <div className=" flex">
                       <span>
                         {exerciseId === exercise._id ? (
                           <div>{exercise.name}</div>
@@ -38,9 +39,9 @@ const WorkoutCard = ({ workout }) => {
             );
           })}
         </div>
-        <span>{workout.updatedAt}</span>
+        <span className="text-gray-200 mt-2 ml-1 flex">Last Done - {formatDateV2(new Date(workout.updatedAt))}</span>
       </div>
-    </div>
+    </button>
   );
 };
 
