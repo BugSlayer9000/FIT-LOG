@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Pen } from "lucide-react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom"
 
 const ProfilePage = () => {
-  const { authUser, updateProfile, isUpdating } = useAuthStore();
+ 
+  const navigate = useNavigate()
+
+  const { authUser, updateProfile, isUpdating,logout } = useAuthStore();
 
   const [updateInfo, setUpdateInfo] = useState({
     height: "",
@@ -13,6 +17,8 @@ const ProfilePage = () => {
 
   const [editHeight, setEditHeight] = useState(false);
   const [editWeight, setEditWeight] = useState(false);
+
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     authUser;
@@ -27,6 +33,12 @@ const ProfilePage = () => {
 
     setEditHeight(false);
     setEditWeight(false);
+  };
+
+  const handleLogOut = async () => {
+    logout()
+    navigate("/login")
+    
   };
 
   return (
@@ -122,6 +134,44 @@ const ProfilePage = () => {
         {/* <div className="border text-zinc-50">
           
         </div> */}
+
+        {/* Logout button */}
+        <button className="btn mt-6 btn-warning" onClick={() => setShowAlert(true)}>
+          <span className="font-semibold text-xl font-mono">Log Out</span>
+        </button>
+
+        <div
+          role="alert"
+          className={
+            showAlert
+              ? "alert alert-error alert-vertical sm:alert-horizontal mt-6"
+              : "hidden"
+          }
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="stroke-blue-600 h-8 w-8 shrink-0"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          <span className="text-xl font-semibold">Are you sure ? </span>
+          <div className=" flex  w-52 justify-evenly">
+            <button className="btn btn-sm" onClick={() => setShowAlert(false)}>No</button>
+            <button
+              className="btn btn-sm btn-primary"
+              onClick={() => handleLogOut()}
+            >
+              Yes
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
