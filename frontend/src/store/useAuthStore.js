@@ -2,6 +2,8 @@ import { create } from "zustand";
 import toast from "react-hot-toast";
 import api from "../lib/axios";
 
+import { useWorkoutsStore } from "./useWorkoutsStore";
+
 const BASE_URL =
   import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 
@@ -54,6 +56,9 @@ export const useAuthStore = create((set) => ({
   },
 
   logout: async () => {
+    const resetWorkouts = useWorkoutsStore.getState().resetWorkouts
+
+    resetWorkouts()
     try {
       await api.post("/auth/logout");
       set({ authUser: null });

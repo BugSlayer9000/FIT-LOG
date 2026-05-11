@@ -14,7 +14,7 @@ export const useExerciseLogStore = create((set) => ({
     set({ isLoading: true });
     try {
       const res = await api.get("/exerciseLogs");
-      const data = res.data.sata;
+      const data = res.data.data;
       set({ logs: data });
       console.log("Exercise Logs imported successfully");
     } catch (error) {

@@ -29,7 +29,7 @@ export const userExercisesStore = create((set,get) => ({
   getExerciseById : async (id) => {
     set({isLoading:true})
     try {
-      const res = await api.get(`/exercises${id}`)
+      const res = await api.get(`/exercises/${id}`)
       res.data.data
 
     } catch (error) {

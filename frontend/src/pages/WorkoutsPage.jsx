@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
-import { useWorkoutsStore } from "../store/useWorkoutsStore";
 import { Loader } from "lucide-react";
+
+import { useWorkoutsStore } from "../store/useWorkoutsStore";
 
 import WorkoutCard from "../components/WorkoutCard";
 
 const WorkoutsPage = () => {
-  const { workouts, isLoading, fetchWorkouts } = useWorkoutsStore();
+  const { workouts, isLoading, fetchWorkouts} = useWorkoutsStore();
 
   useEffect(() => {
     fetchWorkouts();
+    
   }, [fetchWorkouts]);
 
-  console.log(workouts);
+  
+  
+  
 
   return (
     <div className="h-full">
@@ -37,7 +41,7 @@ const WorkoutsPage = () => {
             </span>
             <div className="border m-2 p-2 w-full border-teal-500/25 rounded-xl grid grid-cols-2 gap-4">
               {workouts.map((workout) => {
-                return <WorkoutCard key={workout._id} workout={workout}/>
+                return <WorkoutCard key={workout._id} workout={workout} />;
               })}
             </div>
           </div>
