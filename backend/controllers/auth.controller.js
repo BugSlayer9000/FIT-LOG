@@ -4,7 +4,7 @@ import { genarateToken } from "../lib/utils.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
 
 export const signin = async (req, res) => {
-  const { fullname, email, password, workouts, weight, height, profilePic } =
+  const { fullname, email, password, workouts, weight, height, birthday } =
     req.body;
 
   try {
@@ -36,7 +36,7 @@ export const signin = async (req, res) => {
       workouts,
       weight,
       height,
-      profilePic,
+      birthday,
     });
 
     if (newUser) {
@@ -50,7 +50,7 @@ export const signin = async (req, res) => {
         workouts: newUser.workouts,
         weight: newUser.weight,
         height: newUser.height,
-        profilePic: newUser.profilePic,
+        birthday: newUser.birthday,
       });
     } else {
       res.status(400).json({ message: "invalid user data" });

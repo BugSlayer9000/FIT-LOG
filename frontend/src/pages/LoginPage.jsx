@@ -21,7 +21,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(formData);
-    navigate("/exercises")
+    navigate("/")
   };
 
   return (
