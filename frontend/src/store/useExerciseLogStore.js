@@ -11,10 +11,13 @@ export const useExerciseLogStore = create((set) => ({
   // functions
 
   fetchLogs: async () => {
-    set({ isLoading: true });
+    set({ isLoading: true, logs: [] });
+
     try {
       const res = await api.get("/exerciseLogs");
       const data = res.data.data;
+      console.log("expected logs ", data);
+
       set({ logs: data });
       console.log("Exercise Logs imported successfully");
     } catch (error) {

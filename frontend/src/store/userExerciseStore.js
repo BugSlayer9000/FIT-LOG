@@ -30,7 +30,8 @@ export const userExercisesStore = create((set,get) => ({
     set({isLoading:true})
     try {
       const res = await api.get(`/exercises/${id}`)
-      res.data.data
+      const data = res.data.data
+      set({selectedExercise: data})
 
     } catch (error) {
       toast.error("Error Try again")

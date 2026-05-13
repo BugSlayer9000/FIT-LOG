@@ -3,8 +3,25 @@ import mongoose from "mongoose";
 
 export const getAllLogs = async (req, res) => {
   try {
-    const logs = await ExerciseLog.find().sort({ date: -1 });
-    res.status(200).json({ success: true, data: logs });
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    const userId = req.user._id;
+
+    console.log("User id expected", req.user._id);
+
+    const logs = await ExerciseLog.find().sort({
+      date: -1,
+    });
+
+    const filteredLogs = logs.filter(
+      (log) => log.user && log.user.toString() === userId.toString(),
+    );
+
+    console.log("length", filteredLogs.length);
+
+    res.status(200).json({ success: true, data: filteredLogs });
   } catch (error) {
     console.log("Error in getAllLogs", error);
     res.status(500).json({ success: false, message: "Server Error" });
@@ -37,7 +54,7 @@ export const createALog = async (req, res) => {
       .json({ success: false, message: "Please fill all the fields" });
   }
 
-  const newLog = ExerciseLog(log);
+  const newLog = new ExerciseLog(log);
 
   try {
     await newLog.save();

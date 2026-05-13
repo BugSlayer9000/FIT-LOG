@@ -27,7 +27,7 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center align-middleborder-t border-secondary/60">
+    <div className="min-h-screen flex flex-col justify-start items-center overflow-auto mt-5">
       <form
         onSubmit={handleSubmit}
         className="bg-neutral rounded-2xl p-4 flex flex-col mx-6"
@@ -87,7 +87,7 @@ const SignInPage = () => {
         />
 
         {/* Height and weight section */}
-        <div className="flex items-center justify-evenly">
+        <div className="flex flex-col items-center justify-evenly">
           <div className="flex-1  ">
             <span className="mb-2 text-md ml-3">
               Height in CM{" "}
@@ -101,7 +101,7 @@ const SignInPage = () => {
               value={formData.height}
               onChange={(e) =>
                 setFormData({ ...formData, height: e.target.value })
-              }
+              }cm
             />
           </div>
           <div className="flex-1 ">

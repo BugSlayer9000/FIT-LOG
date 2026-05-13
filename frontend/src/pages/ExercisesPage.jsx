@@ -17,9 +17,7 @@ const ExercisesPage = () => {
     return acc;
   }, []);
 
-  console.log(filtredExercises);
-
-  console.log(exercises);
+  
 
   return (
     <div className="min-h-screen flex flex-col ">

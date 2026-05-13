@@ -18,22 +18,6 @@ export const useWorkoutsStore = create((set, get) => ({
     return ids;
   },
 
-  // authenticateWorkouts: async () => {
-  //   get().getWorkoutIds();
-
-  //   const authUser = useAuthStore.getState().authUser;
-  //   const authWorkouts = authUser.workouts;
-
-  //   const sorted1 = [...authWorkouts].sort();
-  //   const sorted2 = [...get().workoutIds].sort();
-
-  //   const isSame =
-  //     sorted1.length === sorted2.length &&
-  //     sorted1.every((value, index) => value === sorted2[index]);
-
-  //   console.log(isSame);
-  // },
-
   resetWorkouts: async () => {
     set({ workouts: [] });
     set({ workoutIds: [] });

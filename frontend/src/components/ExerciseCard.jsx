@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useExerciseLogStore } from "../store/useExerciseLogStore";
+
+
 
 const ExerciseCard = ({ exercise }) => {
+
+  const {fetchLogs, logs} = useExerciseLogStore()
+
+  
+
+  useEffect(() =>{
+     fetchLogs()
+  },[fetchLogs])
+
+  console.log(logs);
+  
+
+
+
   return (
     <div className="border border-primary bg-primary-focus/80 p-1">
       <div className="border flex flex-row justify-center items-center">

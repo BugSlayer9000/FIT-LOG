@@ -10,12 +10,14 @@ const WorkoutCard = ({ workout }) => {
     fetchExercises();
   }, [fetchExercises]);
 
-
-
   return (
-    <button className="bg-primary/40 border-primary rounded-lg p-1">
-      <div className=" flex flex-col p-3">
-        <span className="text-xl text-left font-semibold text-zinc-300 ml-1">{workout.workoutName}</span>
+    <button className="bg-primary/40 border-primary rounded-lg  flex">
+      <div className=" flex flex-col p-2 min-w-full justify-start">
+        <div className="flex" >
+          <span className="text-xl text-left  text-zinc-300 ml-1 ">
+          {workout.workoutName}
+        </span>
+        </div>
         <div className="border border-primary-content/50 mt-2 p-2 bg-primary-content/40 rounded-md">
           {/* get all the exercises from exercises store */}
           {exercises.map((exercise) => {
@@ -39,7 +41,9 @@ const WorkoutCard = ({ workout }) => {
             );
           })}
         </div>
-        <span className="text-gray-200 mt-2 ml-1 flex">Last Done - {formatDateV2(new Date(workout.updatedAt))}</span>
+        <span className="text-gray-200 mt-2 ml-1 flex">
+          Last Done - {formatDateV2(new Date(workout.updatedAt))}
+        </span>
       </div>
     </button>
   );
