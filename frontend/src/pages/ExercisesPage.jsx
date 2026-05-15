@@ -17,8 +17,6 @@ const ExercisesPage = () => {
     return acc;
   }, []);
 
-  
-
   return (
     <div className="min-h-screen flex flex-col ">
       <div className="border p-4 mb-4">
