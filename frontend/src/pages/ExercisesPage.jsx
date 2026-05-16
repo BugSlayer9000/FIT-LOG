@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { userExercisesStore } from "../store/userExerciseStore.js";
 import ExerciseCard from "../components/ExerciseCard.jsx";
+import { useNavigate } from "react-router-dom"
 
 const ExercisesPage = () => {
   const { fetchExercises, exercises } = userExercisesStore();
   const [text, setText] = useState("");
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchExercises();
@@ -19,7 +22,7 @@ const ExercisesPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col ">
-      <div className="border p-4 mb-4">
+      <div className=" p-4 mb-4">
         <div className="flex flex-col gap-4 justify-center items-center">
           <input
             type="text"
@@ -28,12 +31,12 @@ const ExercisesPage = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <button className="btn btn-secondary w-50">
+          <button className="btn btn-secondary w-50" onClick={()=> navigate("addexercise")}>
             <span>Add Exercise</span>
           </button>
         </div>
       </div>
-      <div className="border grid grid-cols-1 grid-rows-1 gap-4 p-3">
+      <div className=" grid grid-cols-1 grid-rows-1 gap-4 p-3">
         <span className="text-xl font-bold font-mono">Exercises</span>
         <div className="border-b border-accent-focus p-1 flex flex-row justify-evenly items-center[&>span]:border [&>span]:text-lg">
           <span>Exercise</span>

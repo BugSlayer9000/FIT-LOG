@@ -2,7 +2,7 @@ import { create } from "zustand";
 import api from "../lib/axios";
 import toast from "react-hot-toast";
 
-export const userExercisesStore = create((set,get) => ({
+export const userExercisesStore = create((set, get) => ({
   // states
   exercises: [],
   selectedExercise: [],
@@ -26,17 +26,29 @@ export const userExercisesStore = create((set,get) => ({
     }
   },
 
-  getExerciseById : async (id) => {
-    set({isLoading:true})
+  getExerciseById: async (id) => {
+    set({ isLoading: true });
     try {
-      const res = await api.get(`/exercises/${id}`)
-      const data = res.data.data
-      set({selectedExercise: data})
-
+      const res = await api.get(`/exercises/${id}`);
+      const data = res.data.data;
+      set({ selectedExercise: data });
     } catch (error) {
-      toast.error("Error Try again")
-      console.log("Error",error);
-      
+      toast.error("Error Try again");
+      console.log("Error", error);
     }
-  }
+  },
+
+  addExercise: async (data) => {
+    set({ isSaving: true });
+    try {
+      const res = await api.post(`/exercises`, data);
+      const resData = res.data.data;
+      set({ exercises: [...get().exercises, resData] });
+    } catch (error) {
+      toast.error("Error Try again");
+      console.log("Error", error);
+    } finally {
+      set({ isSaving: false });
+    }
+  },
 }));

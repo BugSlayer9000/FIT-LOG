@@ -47,7 +47,7 @@ export const createExercise = async (req, res) => {
 
   try {
     await newExercise.save();
-    res.status(201).json({ success: true, message: newExercise });
+    res.status(201).json({ success: true, data: newExercise });
   } catch (error) {
     console.error("Error in create product", error.message);
     res.status(501).json({ success: false, message: "Server Error" });

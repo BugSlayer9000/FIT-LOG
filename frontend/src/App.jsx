@@ -67,11 +67,11 @@ const App = () => {
           element={authUser ? <ExercisesPage /> : <Navigate to={"/login"} />}
         />
         <Route
-          path="/addexercise"
+          path="/exercises/addexercise"
           element={authUser ? <AddExercisePage /> : <Navigate to={"/login"} />}
         />
         <Route
-          path="/updateexercise"
+          path="/exercises/updateexercise"
           element={
             authUser ? <UpdateExercisePage /> : <Navigate to={"/login"} />
           }
