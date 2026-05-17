@@ -38,16 +38,16 @@ const ExercisesPage = () => {
       </div>
       <div className=" grid grid-cols-1 grid-rows-1 gap-4 p-3">
         <span className="text-xl font-bold font-mono">Exercises</span>
-        <div className="border-b border-accent-focus p-1 flex flex-row justify-evenly items-center[&>span]:border [&>span]:text-lg">
+        <div className="border-b border-accent-focus p-1 flex flex-row justify-evenly items-center  [&>span]:text-lg">
           <span>Exercise</span>
           <span>Personal best</span>
           <span>Predicted</span>
         </div>
-        {filtredExercises.length === 0
-          ? exercises.map((e) => <ExerciseCard key={e._id} exercise={e} />)
-          : filtredExercises.map((e) => (
-              <ExerciseCard key={e._id} exercise={e} />
-            ))}
+        <div className="flex flex-col gap-3 overflow-y-auto max-h-[60vh]">
+          {filtredExercises.map((e) => (
+            <ExerciseCard key={e._id} exercise={e} />
+          ))}
+        </div>
       </div>
     </div>
   );

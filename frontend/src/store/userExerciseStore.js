@@ -44,6 +44,7 @@ export const userExercisesStore = create((set, get) => ({
       const res = await api.post(`/exercises`, data);
       const resData = res.data.data;
       set({ exercises: [...get().exercises, resData] });
+      toast.success("Created successfully")
     } catch (error) {
       toast.error("Error Try again");
       console.log("Error", error);
